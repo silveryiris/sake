@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>0.0+</title>
+    <script>
+      function mainPageInit() {
+        const loopExampleCounts = 6
+
+        return {
+          currentTheme: "light",
+          loopExampleCounts,
+          loopExample: Array.from(Array(loopExampleCounts), (x, i) => i),
+        }
+      }
+
+      function surpriseHint() {
+        console.log("能看到這裡你一定是個厲害的駭客")
+        console.log("PS: ( Double click the main page with love. )")
+        console.log("PS2: ", "https://tinyurl.com/dymbb3a")
+      }
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js"
+      defer
+    ></script>
+    <style>
+      body {
+        margin: 0;
+        overflow-x: hidden;
+      }
+
+      .main__wrapper {
+        min-height: 100vh;
+        box-sizing: border-box;
+        position: relative;
+        color: var(--color-main-text);
+        padding: 2rem;
+        width: 100vw;
+        background: linear-gradient(170deg, #005ecb, #c60055);
+        background-size: 600% 600%;
+        animation: take-a-nap 30s ease infinite;
+      }
+
+      .main__example-section {
+        display: block;
+        margin: 2rem 1rem 5rem;
+      }
+
+      .main__sp-title {
+        font-family: "Press Start 2P", cursive;
+        font-size: 2rem;
+        margin: 1rem auto 2rem;
+        display: block;
+        text-align: center;
+      }
+
+      .main__description {
+        font-family: "Signika", sans-serif;
+        margin: 1rem auto;
+        display: block;
+        text-align: center;
+        font-size: 1.5rem;
+        color: var(--color-primary-light);
+      }
+
+      .main__comment {
+        font-family: "Signika", sans-serif;
+        margin: 1rem auto;
+        display: block;
+        text-align: center;
+        color: var(--color-secondary-light);
+        font-size: 1.2rem;
+      }
+
+      .main__footer {
+        margin: 1rem auto;
+        display: block;
+        text-align: center;
+        text-align: center;
+        color: var(--color-main-text);
+      }
+
+      @keyframes take-a-nap {
+        0% {
+          background-position: 0% 33%;
+        }
+        50% {
+          background-position: 100% 60%;
+        }
+        100% {
+          background-position: 0% 33%;
+        }
+      }
+
+      .main__wrapper--dark {
+        min-height: 100vh;
+        box-sizing: border-box;
+        position: relative;
+        color: #fff;
+        padding: 2rem;
+        width: 100vw;
+        background: var(--color-window-background);
+      }
+
+      :root {
+        --color-primary-light: #ffeb3b;
+        --color-secondary-light: #82e9de;
+        --color-main-text: #fff;
+      }
+
+      [data-theme="dark"] {
+        --color-primary-light: #f48fb1;
+        --color-secondary-light: #b2ebf2;
+        --color-window-background: #212121;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      :data-theme="currentTheme"
+      :class="[currentTheme === 'light' ? 'main__wrapper' : 'main__wrapper--dark']"
+      x-data="mainPageInit()"
+      x-init="surpriseHint()"
+      @dblclick.debounce.500="currentTheme = currentTheme === 'light' ? 'dark' : 'light'"
+    >
+      <div class="main__example-section">
+        <div
+          class="main__sp-title"
+          data-qa="s00333"
+          x-text="currentTheme.toUpperCase()"
+        ></div>
+      </div>
+
+      <div class="main__example-section">
+        <div class="main__sp-title" data-qa="s005566">
+          This is Wenwei , hello world !
+        </div>
+
+        <div class="main__description">
+          document.querySelector("[data-qa='s005566']")
+        </div>
+      </div>
+
+      <div class="main__example-section">
+        <template x-for="x in loopExample" :key="x">
+          <div class="main__sp-title" data-qa="s007777">
+            <span>I'm a loop , I'm a bad guy U knew it. </span>
+            <span x-text="x + 1"></span>
+          </div>
+        </template>
+
+        <div class="main__comment">
+          <span>loopExample: Array.from(Array(</span>
+          <span x-text="loopExampleCounts"></span>
+          <span>), (x, i) => i)</span>
+        </div>
+
+        <div class="main__comment">
+          <span>Raw data => [</span>
+          <span x-text="loopExample"></span>
+          <span>]</span>
+        </div>
+
+        <div class="main__description">
+          document.querySelectorAll("[data-qa='s007777']")
+        </div>
+      </div>
+
+      <div class="main__footer">
+        Done with a sleepless night , 20200619
+      </div>
+    </div>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Signika&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+  </body>
+</html>
